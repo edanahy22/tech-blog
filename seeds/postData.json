@@ -1,0 +1,20 @@
+[
+  {
+    "title": "JavaScript",
+    "date_created": "2022-29-07",
+    "content": "A programming language that is one of the core technologies along with CSS and HTML",
+    "user_id": "1"
+  },
+  {
+    "title": "React JS",
+    "created": "2022-29-07",
+    "content": "React is a JS library used for building user interfaces based on UI components",
+    "user_id": "2"
+  },
+  {
+    "title": "MySQL",
+    "created": "2022-29-07",
+    "content": "An open-source relational database management system",
+    "user_id": "3"
+  }
+]
