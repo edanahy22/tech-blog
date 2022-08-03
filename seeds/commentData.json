@@ -1,18 +1,18 @@
 [
     {
-      "date_created": "07/27/2022",
+      "date_created": "2022-07-29",
       "content": "This is a comment",
       "post_id": "1",
       "user_id": "3"
     },
     {
-      "date_created": "07/27/2022",
+      "date_created": "2022-07-29",
       "content": "This is a comment too",
       "post_id": "2",
       "user_id": "1"
     },
     {
-      "date_created": "07/27/2022",
+      "date_created": "2022-07-29",
       "content": "This is a third comment",
       "post_id": "1",
       "user_id": "3"
