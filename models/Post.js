@@ -23,13 +23,6 @@ Post.init(
     content: {
       type: DataTypes.STRING,
     },
-    // comment: {
-    //   type: DataTypes.STRING,
-    //   references: {
-    //     model: 'comment',
-    //     key: 'id',
-    //   }
-    // },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
