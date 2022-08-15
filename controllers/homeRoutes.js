@@ -4,17 +4,36 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
+    const commentData = await Comment.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'username']
+        }
+      ]
+    });
     const postData = await Post.findAll({
       include: [
         {
           model: User,
           attributes: ['username'],
         },
+        {
+          model: Comment,
+          attributes: ['content', 'date_created']
+          // include: [ {model: User, attributes: ['username']} ]
+        },
       ],
     });
+ 
 
+    // postData = postData.map((post) => {
+    //   post.comment.username = commentData.find(comment => {})
+    // })
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
+    
+    console.log(posts);
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -26,7 +45,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -36,15 +55,26 @@ router.get('/post/:id', async (req, res) => {
         },
         {
           model: Comment,
-          include: [ User ] 
+          attributes: ['content', 'date_created', 'user_id'],
+          include: [{ model: User, attributes: ['username']}] 
         }
       ],
     });
 
-    const post = postData.get({ plain: true });
+    // const commentData = await comment.findAll({
+    //   where: {
+    //     post_id: req.params.id
+    //   },
+    //   include: {
+    //     model: User,
+    //     attributes: ['username']
+    //   }
+    // })
 
-    res.render('post', {
-      ...post,
+    const post = postData.get({ plain: true });
+    console.log(post);
+    res.render('postdetails', {
+      post,
       logged_in: req.session.logged_in
     });
   } catch (err) {
